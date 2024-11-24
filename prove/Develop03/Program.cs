@@ -6,12 +6,12 @@ class Program
 {
     static void Main(string[] args)
     {
-        // Initialize the scripture with reference and text
+        // Initialize the scripture and reference text for Proverbs 3:5-6
         ScriptureReference reference = new ScriptureReference("Proverbs", 3, 5, 6);
         string scriptureText = "Trust in the Lord with all thine heart; and lean not unto thine own understanding. In all thy ways acknowledge him, and he shall direct thy paths.";
         Scripture scripture = new Scripture(reference, scriptureText);
 
-        // Interactive loop
+        // Main loop
         while (true)
         {
             Console.Clear();
@@ -43,16 +43,6 @@ class ScriptureReference
     public int StartVerse { get; private set; }
     public int? EndVerse { get; private set; }
 
-    // Constructor for single verse
-
-    public ScriptureReference(string book, int chapter, int startVerse)
-    {
-        Book = book;
-        StartChapter = chapter;
-        StartVerse = startVerse;
-        EndVerse = null;
-    }
-
     // Constructor for verse range
     public ScriptureReference(string book, int chapter, int startVerse, int endVerse)
     {
@@ -60,13 +50,6 @@ class ScriptureReference
         StartChapter = chapter;
         StartVerse = startVerse;
         EndVerse = endVerse;
-    }
-
-    public override string ToString()
-    {
-        return EndVerse == null
-            ? $"{Book} {StartChapter}:{StartVerse}"
-            : $"{Book} {StartChapter}:{StartVerse}-{EndVerse}";
     }
 }
 
@@ -141,5 +124,4 @@ class Scripture
         return Words.All(word => word.Hidden);
     }
 }
-
 
