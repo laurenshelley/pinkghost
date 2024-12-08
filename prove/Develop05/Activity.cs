@@ -26,11 +26,15 @@ public class Activity
 
     protected void ShowSpinner(int seconds)
     {
-        for (int i = 0; i < seconds; i++)
+        string[] spinner = { "\\", "|", "/", "-" };
+        int spinnerIndex = 0;
+
+        for (int i = 0; i < seconds * 4; i++) // Show spinner for the total time in increments of 250ms
         {
-            Console.Write(".");
-            Thread.Sleep(1000);
+            Console.Write($"\r{spinner[spinnerIndex]}");
+            spinnerIndex = (spinnerIndex + 1) % spinner.Length;
+            Thread.Sleep(250); // Delay for 250ms
         }
-        Console.WriteLine();
+        Console.Write("\r "); // Clear the spinner line
     }
 }
